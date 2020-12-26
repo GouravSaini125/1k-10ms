@@ -118,7 +118,7 @@ function setListeners(roomID: string, client: HMSClient, dispatch: Dispatch<Acti
             frameRate: 20,
             shouldPublishAudio: true,
             shouldPublishVideo: true,
-            advancedMediaConstraints: {}
+            advancedMediaConstraints: null,
         });
         dispatch({
             type: ActionTypes.SET_ENTIRE_STATE,

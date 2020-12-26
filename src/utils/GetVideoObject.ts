@@ -4,7 +4,6 @@ import {RemoteStream} from "@100mslive/hmsvideo-web/lib/stream";
 export default function getVideoElement(stream: LocalStream | RemoteStream, name: string): HTMLVideoElement {
     const video: HTMLVideoElement = document.createElement('video');
     video.autoplay = true;
-    video.muted = true;
     video.srcObject = stream;
     video.className = "video__item";
     video.title = name;
