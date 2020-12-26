@@ -5,6 +5,7 @@ export default function getVideoElement(stream: LocalStream | RemoteStream, name
     const video: HTMLVideoElement = document.createElement('video');
     video.autoplay = true;
     video.srcObject = stream;
+    video.muted = stream instanceof LocalStream;
     video.className = "video__item";
     video.title = name;
     return video;
