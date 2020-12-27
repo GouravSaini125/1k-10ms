@@ -25,14 +25,16 @@ export default function ChatWindow(): JSX.Element {
 
     return (
         <div className="chat">
-            {
-                msgs.map(item => (
-                    <div className="msg" key={item.id}>
-                        {item.msg}
-                        <div className="name">{item.name}</div>
-                    </div>
-                ))
-            }
+            <div className="msgs">
+                {
+                    msgs.map(item => (
+                        <div className="msg" key={item.id}>
+                            {item.msg}
+                            <div className="name">{item.name}</div>
+                        </div>
+                    ))
+                }
+            </div>
             <form onSubmit={handleMessage}>
                 <input name="msg" placeholder="Type your message" type="text"/>
             </form>

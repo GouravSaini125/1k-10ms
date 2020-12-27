@@ -67,7 +67,7 @@ export default function BottomBar(): JSX.Element {
                  onClick={() => (
                      navigator.clipboard.writeText(`${window.location.href.split("?")[0]}?roomID=${roomID}`)
                  )}
-            >Join Link : {`${window.location.href.split("?")[0]}?roomID=${roomID}`}</div>
+            >Click to Copy : {`${window.location.href.split("?")[0]}?roomID=${roomID}`}</div>
         </div>
     );
 }
