@@ -227,7 +227,7 @@ video::-webkit-media-controls {
     .chat {
         position: relative;
         margin: auto;
-        margin-bottom: 100px;
+        margin-bottom: 130px;
         bottom: unset;
         right: unset;
     }

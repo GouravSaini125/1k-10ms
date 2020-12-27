@@ -5,7 +5,6 @@ export default function getVideoElement(stream: LocalStream | RemoteStream, name
     const video: HTMLVideoElement = document.createElement('video');
     video.autoplay = true;
     video.srcObject = stream;
-    video.muted = stream instanceof LocalStream;
     video.className = "video__item";
     video.title = name;
     video.style.cursor = "zoom-in";
@@ -20,6 +19,11 @@ export default function getVideoElement(stream: LocalStream | RemoteStream, name
         else if (video.msRequestFullScreen)
             // @ts-ignore
             video.msRequestFullScreen();
+    }
+    if (stream instanceof LocalStream) {
+        video.muted = true;
+        video.style.webkitTransform = "scaleX(-1)";
+        video.style.transform = "scaleX(-1)";
     }
     return video;
 }
