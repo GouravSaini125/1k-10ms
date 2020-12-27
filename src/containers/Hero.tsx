@@ -27,7 +27,7 @@ export default function Hero(): JSX.Element {
 
     return client ? (
         <React.Fragment>
-            <div ref={containerRef} key={streamObjects ? Object.keys(streamObjects).length : 0}>
+            <div ref={containerRef} key={streamObjects ? Object.keys(streamObjects).length : localStream?.mid}>
                 <div/>
             </div>
             <BottomBar/>

@@ -155,3 +155,8 @@ button:hover {
 .bottomBar .room-id:hover {
     color: blue;
 }
+
+/*noinspection CssInvalidPseudoSelector*/
+video::-webkit-media-controls {
+    display:none !important;
+}
