@@ -16,7 +16,7 @@ export default class MeetClient {
     constructor() {
         this.client = null;
         this.config = new HMSClientConfig({
-            endpoint: "wss://qa-in.100ms.live"
+            endpoint: "wss://prod-in.100ms.live"
         });
     }
 
