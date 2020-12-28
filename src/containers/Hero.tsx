@@ -1,35 +1,22 @@
-import React, {useContext, useEffect, useRef} from "react";
+import React, {useContext} from "react";
 import {MeetContext} from "../contexts/MeetContext";
 import EntryForm from "../components/EntryForm";
 import BottomBar from "../components/BottomBar";
 import ChatWindow from "../components/ChatWindow";
-import getVideoElement from "../utils/GetVideoObject";
+import setVideoStream from "../utils/GetVideoObject";
 
 export default function Hero(): JSX.Element {
-    const {client, streamObjects, localStream, userName, localScreen} = useContext(MeetContext);
-    const containerRef = useRef<HTMLDivElement>();
-
-    useEffect(() => {
-        if (containerRef.current) {
-            const el: HTMLDivElement = document.createElement('div');
-            if (localStream) {
-                el.appendChild(getVideoElement(localStream, userName));
-            }
-            if (localScreen) {
-                el.appendChild(getVideoElement(localScreen, userName));
-            }
-            streamObjects && Object.values(streamObjects)?.forEach(object => {
-                el.appendChild(getVideoElement(object.stream, object.name));
-            });
-            containerRef.current.replaceChild(el, containerRef.current.firstChild);
-        }
-    }, [containerRef.current, streamObjects, localScreen, localStream])
+    const {client, streamObjects, localStream, localScreen} = useContext(MeetContext);
 
     return client ? (
         <React.Fragment>
-            <div className="call__wrapper" ref={containerRef}
-                 key={streamObjects ? Object.keys(streamObjects).length : "100ms"}>
-                <div/>
+            <div className="call__wrapper">
+                {localStream !== null && <video ref={el => setVideoStream(el, localStream, "Me")}/>}
+                {localScreen !== null && <video ref={el => setVideoStream(el, localScreen, "Me")}/>}
+                {streamObjects !== null && (
+                    Object.values(streamObjects)?.map(object => <video
+                        ref={el => setVideoStream(el, object.stream, object.name)}/>)
+                )}
             </div>
             <BottomBar/>
             <ChatWindow/>
