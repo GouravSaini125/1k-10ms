@@ -23,11 +23,12 @@ export default function Hero(): JSX.Element {
             });
             containerRef.current.replaceChild(el, containerRef.current.firstChild);
         }
-    }, [containerRef.current, streamObjects, localScreen])
+    }, [containerRef.current, streamObjects, localScreen, localStream])
 
     return client ? (
         <React.Fragment>
-            <div className="call__wrapper" ref={containerRef} key={streamObjects ? Object.keys(streamObjects).length : localStream?.mid}>
+            <div className="call__wrapper" ref={containerRef}
+                 key={streamObjects ? Object.keys(streamObjects).length : "100ms"}>
                 <div/>
             </div>
             <BottomBar/>

@@ -26,7 +26,7 @@ type Msg = {
     id: string,
 }
 
-export type Video = {
+export type Meet = {
     userName: string,
     roomName: string,
     roomID: string,

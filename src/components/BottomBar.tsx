@@ -13,12 +13,12 @@ export default function BottomBar(): JSX.Element {
             setMediaStatus(prevState => {
                 return {...prevState, [type]: false}
             })
-            await localStream.mute(type);
+            await localStream?.mute(type);
         } else {
             setMediaStatus(prevState => {
                 return {...prevState, [type]: true}
             })
-            await localStream.unmute(type);
+            await localStream?.unmute(type);
         }
     }
 
@@ -65,7 +65,7 @@ export default function BottomBar(): JSX.Element {
             <div className="room-id"
                  title="CLICK TO COPY"
                  onClick={() => (
-                     navigator.clipboard.writeText(`${window.location.href.split("?")[0]}?roomID=${roomID}`)
+                     navigator?.clipboard?.writeText(`${window.location.href.split("?")[0]}?roomID=${roomID}`)
                  )}
             >Click to Copy : {`${window.location.href.split("?")[0]}?roomID=${roomID}`}</div>
         </div>

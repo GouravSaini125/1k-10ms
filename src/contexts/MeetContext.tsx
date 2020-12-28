@@ -3,9 +3,9 @@ import ActionTypes from "../types/ActionTypes";
 import {HMSClient, LocalStream} from "@100mslive/hmsvideo-web";
 import axios from 'axios';
 import MeetClient from "../configs/MeetClient";
-import {Action, Role, Video} from "../types/Types";
+import {Action, Meet, Role} from "../types/Types";
 
-const initialState: Video = {
+const initialState: Meet = {
     userName: "",
     roomName: "",
     roomID: "",
@@ -18,16 +18,16 @@ const initialState: Video = {
 }
 
 
-const initialData: Video = {
+const initialData: Meet = {
     ...initialState,
     dispatch: (): void => {
         throw new Error('setDispatch function must be overridden');
     }
 }
 
-export const MeetContext: Context<Video> = createContext<Video>(initialData);
+export const MeetContext: Context<Meet> = createContext<Meet>(initialData);
 
-const videoReducer = (state: Video, action: Action): Video => {
+const videoReducer = (state: Meet, action: Action): Meet => {
     switch (action.type) {
         case ActionTypes.SET_ENTIRE_STATE:
             return {
@@ -64,26 +64,26 @@ const videoReducer = (state: Video, action: Action): Video => {
 
 
 export const MeetProvider = ({children}: any): JSX.Element => {
-    const [video, dispatch] = useReducer(videoReducer, initialState);
+    const [meet, dispatch] = useReducer(videoReducer, initialState);
 
     const connect = async (): Promise<void> => {
 
         try {
             let roomID: string;
 
-            if (video.role === Role.HOST) {
+            if (meet.role === Role.HOST) {
                 const result = await axios.post(`https://ms-services-niev75452488.runkit.sh/?api=room`, {
-                    room_name: video.roomName,
+                    room_name: meet.roomName,
                 });
 
                 roomID = result.data.id;
             } else {
-                roomID = video.roomID;
+                roomID = meet.roomID;
             }
 
             console.log("roomID", roomID)
 
-            const config: MeetClient = await (new MeetClient()).initiate(video.userName, roomID, video.role);
+            const config: MeetClient = await (new MeetClient()).initiate(meet.userName, roomID, meet.role);
 
             dispatch({
                 type: ActionTypes.SET_ENTIRE_STATE,
@@ -101,7 +101,7 @@ export const MeetProvider = ({children}: any): JSX.Element => {
     }
 
     return (
-        <MeetContext.Provider value={{...video, dispatch, connect}}>
+        <MeetContext.Provider value={{...meet, dispatch, connect}}>
             {children}
         </MeetContext.Provider>
     )

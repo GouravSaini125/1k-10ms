@@ -99,7 +99,7 @@ button:hover {
 
 .chat {
     position: fixed;
-    bottom: 140px;
+    bottom: 20px;
     right: 20px;
     height: 350px;
     width: 300px;
@@ -109,6 +109,7 @@ button:hover {
     5px 5px 5px rgba(163, 177, 198, 0.6);
     padding-top: 10px;
     background-color: #dee9fd;
+    z-index: 99;
 }
 
 .chat .msgs {
@@ -230,5 +231,6 @@ video::-webkit-media-controls {
         margin-bottom: 130px;
         bottom: unset;
         right: unset;
+        z-index: unset;
     }
 }
